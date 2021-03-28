@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![TODO: Update the path with the name of your diagram](Diagram/RedTeamServerDiagram.PNG)
+![TODO: Update the path with the name of your diagram](images/RedTeamServerDiagram.PNG)
 
 The Ansible Playbook files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, running specific Playbook file may be used to install only certain pieces of it, such as Filebeat or Metricbeat.
 
