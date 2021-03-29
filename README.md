@@ -22,17 +22,14 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly responsive, in addition to restricting __traffic__ to the network.
-- The Load Blancer in this Elk Server is stationed more on Layer 4 of the OSI model. We are using the load balancer more as a transporting level for our Web VMs.
+- The Load Blancer in this Elk Server is stationed on Layer 4 of the OSI model. We are using the load balancer more as a transporting level for our Web VMs.
 - Jump Box was implemented on this server for an easy single point of traffic to our VMs. Along with that, we can get better auditing logs for administrative tasks through the Jump Box. 
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system logs.
 - Filebeat will take logs from the Web VMs and move them all to a central location for easy log management.
-- TODO: Add filebeat.reference.yml in project
 - Metricbeat puts out metric information about our system metrics. 
-- TODO: Add metricbeat.reference.yml in project
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
@@ -40,6 +37,7 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Web-1    | VM       | 10.0.0.5   | Linux            |
 | Web-2    | VM       | 10.0.0.6   | Linux            |
 | Web-3    | VM       | 10.0.0.7   | Linux            |
+| ELK	   | VM       | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
@@ -58,7 +56,6 @@ A summary of the access policies in place can be found in the table below.
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
 | Jump Box | NO                  | 10.0.0.5 + 10.0.0.6 + 10.0.0.7 + 10.1.0.4    |
-|          |                     |                      |
 |          |                     |                      |
 
 ### Elk Configuration
@@ -89,18 +86,23 @@ We have installed the following Beats on these machines:
 - metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- Filebeat:
-- Metricbeat:
+- Filebeat: Collects system logs from the configured machines. (Target Machines & Beats)
+- Metricbeat: Collects system metrics for configured machines. (Target Machines & Beats)
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the file(s) filebeat-playbook.yml; metricbeat-playbook.yml; to /etc/ansible/.
-- Update the _____ file to include...
-- Run the playbook ansible-playbook {playbook yml name}, and navigate to {elk VM public key}:5601/app/kabana to check that the installation worked as expected.
+- Copy the file install-elk.yml to /etc/ansible/.
+- Update the ansible hosts file (/etc/ansible/hosts) to include:
+ [webservers]<---- NOTE: This is the Group Name: When you run playbooks with Ansible, you specify which group to run them on. This allows you to run certain playbooks on some machines, but not on others.
+ 10.0.0.4 ansible_python_interpreter=/usr/bin/python3
+ 10.0.0.5 ansible_python_interpreter=/usr/bin/python3
+ 10.0.0.6 ansible_python_interpreter=/usr/bin/python3
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
+ [elk]
+ 10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+
+- Run the playbook Command: ansible-playbook install-elk.yml, and navigate to {elk VM public key}:5601/app/kabana to check that the installation worked as expected.
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
