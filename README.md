@@ -6,7 +6,7 @@ The files in this repository were used to configure the network depicted below.
 
 The Ansible Playbook files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, running specific Playbook file may be used to install only certain pieces of it, such as Filebeat or Metricbeat.
 
-  - _https://github.com/waitsneaky/Elk-Stack-Project/tree/main/AnsiblePlaybooks._ TODO: Add pentest.yml + Elm.yml File here too
+  - _https://github.com/waitsneaky/Elk-Stack-Project/tree/main/AnsiblePlaybooks.
 
 This document contains the following details:
 - Description of the Topologu
@@ -21,11 +21,11 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly responsive, in addition to restricting __traffic__ to the network.
+Load balancing ensures that the application will be highly responsive, in addition to restricting TCP/80 traffic to the network.
 - The Load Blancer in this Elk Server is stationed on Layer 4 of the OSI model. We are using the load balancer more as a transporting level for our Web VMs.
 - Jump Box was implemented on this server for an easy single point of traffic to our VMs. Along with that, we can get better auditing logs for administrative tasks through the Jump Box. 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system logs.
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the system metrics and logs.
 - Filebeat will take logs from the Web VMs and move them all to a central location for easy log management.
 - Metricbeat puts out metric information about our system metrics. 
 
@@ -37,7 +37,7 @@ The configuration details of each machine may be found below.
 | Web-1    | VM       | 10.0.0.5   | Linux            |
 | Web-2    | VM       | 10.0.0.6   | Linux            |
 | Web-3    | VM       | 10.0.0.7   | Linux            |
-| ELK	   | VM       | 10.1.0.4   | Linux            |
+| ELK	     | VM       | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
@@ -95,7 +95,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the file install-elk.yml to /etc/ansible/.
 - Update the ansible hosts file (/etc/ansible/hosts) to include:
- [webservers]<---- NOTE: This is the Group Name: When you run playbooks with Ansible, you specify which group to run them on. This allows you to run certain playbooks on some machines, but not on others.
+ [webservers]<---- NOTE: This is the Group Name: When you run playbooks with Ansible, you specify which group to run them on. This allows you to run certain playbooks on some machines, but not on others.----|
  10.0.0.4 ansible_python_interpreter=/usr/bin/python3
  10.0.0.5 ansible_python_interpreter=/usr/bin/python3
  10.0.0.6 ansible_python_interpreter=/usr/bin/python3
