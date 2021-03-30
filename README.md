@@ -106,4 +106,23 @@ SSH into the control node and follow the steps below:
 
 - Run the playbook Command: *ansible-playbook install-elk.yml*, and navigate to *{ELK VM Public IP}:5601/app/kabana* to check that the installation worked as expected.
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+### Setup: It is to be understood that all your azure items (VM,Resource Groups, Network Security Group etc. have already been setup
+
+SSH into Jump Box:
+- ssh redadmin@jumpboxip
+
+Check the docker container list:
+- sudo docker container list -a
+
+Start Container:
+- sudo docker start {container from your list}
+- sudo docker attach {container from your list} --> You should at this point be in your container
+
+Folder Paths for Ansible/Filebeat/metricbeat File Locations:
+- /etc/ansible: ansible.cfg | filebeat-playbook.yml | install-elk.yml | metricbeat-playbook.yml | pentest.yml
+- /etc/ansible/files: filebeat-config.yml | metricbeat-config.yml
+- /etc/filebeat: filebeat.reference.yml | filebeat.yml
+- /etc/metricbeat: metricbeat.reference.yml | metricbeat.yml
+
+Configure Files:
+IN-PROGRESS
