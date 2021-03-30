@@ -71,7 +71,7 @@ The Elk Playbook implements the following tasks:
 - Allocates more Memory for the ELK server
 - Downloads and launches a docker elk container on three published ports
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
+The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. Once the container is up and running, SSH into your elk machine and run the following command.  If all is well, you should see that the STATUS of the container is Up.
 
 ![](Images/docker_ps_output.PNG)
 
@@ -104,12 +104,12 @@ SSH into the control node and follow the steps below:
  [elk]
  10.1.0.4 ansible_python_interpreter=/usr/bin/python3
 
-- Run the playbook Command: *ansible-playbook install-elk.yml*, and navigate to *{ELK VM Public IP}:5601/app/kabana* to check that the installation worked as expected.
+- Run the playbook Command: ansible-playbook install-elk.yml, and navigate to http://[your.VM.IP]:5601/app/kibana to check that the installation worked as expected.
 
 ### Setup: It is to be understood that all your azure items (VM,Resource Groups, Network Security Group etc. have already been setup
 
 SSH into Jump Box:
-- ssh redadmin@jumpboxip
+- ssh username@jump.box.ip
 
 Check the docker container list:
 - sudo docker container list -a
@@ -125,4 +125,4 @@ Folder Paths for Ansible/Filebeat/metricbeat File Locations:
 - /etc/metricbeat: metricbeat.reference.yml | metricbeat.yml
 
 Configure Files:
-IN-PROGRESS
+COMING SOON
